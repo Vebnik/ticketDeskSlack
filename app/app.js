@@ -10,5 +10,5 @@ const app = new App({
 const start = new AppStart(app)
 
 
-start.login().then()
+start.login()
 start.eventHandler()
