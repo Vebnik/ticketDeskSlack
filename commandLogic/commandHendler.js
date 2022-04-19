@@ -1,13 +1,12 @@
+const { modalSchema } = require('../modalMessage/modal')
 
 
 function commandListen (app) {
 
-	app.command('/newticket', async ({ command, ack, respond }) => {
+	app.command('/newticket', async ({ ack, body, client, logger }) => {
 		await ack()
-		console.log(command)
-		await respond('hello')
+		await modalSchema.ticket(client, body).then(modal => { logger.info(modal) })
 	})
-
 }
 
 
