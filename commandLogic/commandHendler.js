@@ -1,4 +1,6 @@
 const { modalSchema } = require('../modalMessage/modal')
+const { log } = require('../sys/consoleLog')
+const { sendMsg } = require('./slackApi')
 
 
 function commandListen (app) {
@@ -11,14 +13,7 @@ function commandListen (app) {
 function modalSubmitListen (app) {
 	app.view('ticketModal', async ({ ack, body, view, client, logger }) => {
 		await ack()
-		const userName = `@${body.user.name}`
-		const userInputs = Object.values(view.state.values).map(el => Object.values(el)).map(el => Object.entries(...el)[1]).map(el => el[1])
-
-		console.log(userName, userInputs)
-		await client.chat.postMessage({
-			channel: userInputs[0],
-			text: userInputs.slice(1).toString()
-		})
+		await sendMsg(client, body, view).catch(err => log.err(err))
 	})
 }
 

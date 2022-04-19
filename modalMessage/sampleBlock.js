@@ -76,7 +76,7 @@ module.exports = {
 				},
 				"label": {
 					"type": "plain_text",
-					"text": "Problem description",
+					"text": ":one: Описание проблемы",
 					"emoji": true
 				}
 			},
@@ -89,7 +89,7 @@ module.exports = {
 				},
 				"label": {
 					"type": "plain_text",
-					"text": "STR",
+					"text": ":two: Step To Record",
 					"emoji": true
 				}
 			},
@@ -102,7 +102,7 @@ module.exports = {
 				},
 				"label": {
 					"type": "plain_text",
-					"text": "STP",
+					"text": ":four: Фактическое поведение",
 					"emoji": true
 				}
 			},
@@ -114,7 +114,7 @@ module.exports = {
 				},
 				"label": {
 					"type": "plain_text",
-					"text": "Other info",
+					"text": ":five: Ожидаемое поведение",
 					"emoji": true
 				}
 			}
@@ -129,5 +129,57 @@ module.exports = {
 			"text": "Submit",
 			"emoji": true
 		},
-	}
+	},
+	ticketMsg: (userName, userInput) => [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": `Обращения для QA 💻 -> @${userName}`
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": `:one: Описание проблемы\n${userInput[3]}`,
+				"emoji": true
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": `:two: Step To Record\n${userInput[4]}`,
+				"emoji": true
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": `:four: Фактическое поведение\n${userInput[5]}`,
+				"emoji": true
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": `:five: Ожидаемое поведение\n${userInput[6]}`,
+				"emoji": true
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": `:six: Дополнительная информация\nID1: ${userInput[1]} || ID2 ${userInput[2]}`,
+				"emoji": true
+			}
+		}
+	],
 }
