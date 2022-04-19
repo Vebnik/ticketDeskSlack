@@ -4,7 +4,7 @@
   "description": "slack bot",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "startApp": "node -r dotenv/config ./app/app.js"
   },
   "keywords": [
     "bot"
@@ -12,6 +12,8 @@
   "author": "NikEvs",
   "license": "ISC",
   "dependencies": {
+    "@slack/bolt": "^3.11.0",
+    "chalk": "^4.1.2",
     "dotenv": "^16.0.0"
   }
 }
