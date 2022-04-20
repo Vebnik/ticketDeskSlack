@@ -10,7 +10,7 @@ async function sendMsg (client, body, view) {
 
 	await client.chat.postMessage({
 		channel: userInputs[0],
-		attachments: ticketMsg(userName, 'waiting support 🔴'),
+		attachments: ticketMsg(userName, 'waiting support ⏲'),
 	})
 		.then(async info => {
 			threadMem.set(info.ts, [info.channel, userName])
@@ -34,7 +34,7 @@ async function editStatusMsg (client, event) {
 			await client.chat.update({
 				channel: reactions[0],
 				ts: reactions[1],
-				attachments: ticketMsg(threadMem.get(reactions[1])[1], 'In progress 🟡'),
+				attachments: ticketMsg(threadMem.get(reactions[1])[1], 'In progress 🛠'),
 			})
 		break
 
@@ -42,7 +42,7 @@ async function editStatusMsg (client, event) {
 			await client.chat.update({
 				channel: reactions[0],
 				ts: reactions[1],
-				attachments: ticketMsg(threadMem.get(reactions[1])[1], 'Close 🟢'),
+				attachments: ticketMsg(threadMem.get(reactions[1])[1], 'Close 🛑'),
 			})
 		break
 	}

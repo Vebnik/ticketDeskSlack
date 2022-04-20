@@ -12,7 +12,7 @@ module.exports = {
 				"type": "section",
 				"text": {
 					"type": "mrkdwn",
-					"text": "Создание обращения для QA"
+					"text": "Create ticket"
 				}
 			},
 			{
@@ -23,7 +23,7 @@ module.exports = {
 				"elements": [
 					{
 						"type": "plain_text",
-						"text": "Выбери нужные канал",
+						"text": "Pick right channel",
 						"emoji": true
 					}
 				]
@@ -51,7 +51,7 @@ module.exports = {
 				},
 				"label": {
 					"type": "plain_text",
-					"text": "ID Student",
+					"text": "ID User 1",
 					"emoji": true
 				}
 			},
@@ -63,7 +63,7 @@ module.exports = {
 				},
 				"label": {
 					"type": "plain_text",
-					"text": "ID Teacher",
+					"text": "ID User 2",
 					"emoji": true
 				}
 			},
@@ -76,7 +76,7 @@ module.exports = {
 				},
 				"label": {
 					"type": "plain_text",
-					"text": ":one: Описание проблемы",
+					"text": ":one: Description of the problem",
 					"emoji": true
 				}
 			},
@@ -102,7 +102,7 @@ module.exports = {
 				},
 				"label": {
 					"type": "plain_text",
-					"text": ":four: Фактическое поведение",
+					"text": ":four: Actual Behavior",
 					"emoji": true
 				}
 			},
@@ -114,7 +114,7 @@ module.exports = {
 				},
 				"label": {
 					"type": "plain_text",
-					"text": ":five: Ожидаемое поведение",
+					"text": ":five: Expected Behavior",
 					"emoji": true
 				}
 			}
@@ -147,7 +147,7 @@ module.exports = {
 			"type": "section",
 			"text": {
 				"type": "plain_text",
-				"text": `:one: Описание проблемы\n${userInput[3]}`,
+				"text": `:one: Description of the problem\n${userInput[3]}`,
 				"emoji": true
 			}
 		},
@@ -163,7 +163,7 @@ module.exports = {
 			"type": "section",
 			"text": {
 				"type": "plain_text",
-				"text": `:three: Фактическое поведение\n${userInput[5]}`,
+				"text": `:three: Actual Behavior\n${userInput[5]}`,
 				"emoji": true
 			}
 		},
@@ -171,7 +171,7 @@ module.exports = {
 			"type": "section",
 			"text": {
 				"type": "plain_text",
-				"text": `:four: Ожидаемое поведение\n${userInput[6]}`,
+				"text": `:four: Expected Behavior\n${userInput[6]}`,
 				"emoji": true
 			}
 		},
@@ -179,7 +179,7 @@ module.exports = {
 			"type": "section",
 			"text": {
 				"type": "plain_text",
-				"text": `:five: Дополнительная информация\nID1: ${userInput[1]} || ID2 ${userInput[2]}`,
+				"text": `:five: Additional Information\nID1: ${userInput[1]} || ID2 ${userInput[2]}`,
 				"emoji": true
 			}
 		},
@@ -189,20 +189,20 @@ module.exports = {
 	],
 	ticketMsg: (userName, status) => [
 		{
-			"color": "#4184ea",
+			"color": "#255eb4",
 			"blocks": [
 				{
 					"type": "section",
 					"text": {
 						"type": "mrkdwn",
-						"text": `Обращения для QA 💻 -> @${userName}`
+						"text": `Problem case  ➡  @${userName}`
 					}
 				},
 				{
 					"type": "section",
 					"text": {
 						"type": "plain_text",
-						"text": `Status => ${status}`,
+						"text": `Status  ➡  ${status}`,
 						"emoji": true
 					}
 				}
