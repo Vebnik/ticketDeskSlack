@@ -1,6 +1,6 @@
 const { modalSchema } = require('../modalMessage/modal')
 const { log } = require('../sys/consoleLog')
-const { sendMsg, editStatusMsg } = require('./slackApi')
+const { sendMsg, editStatusMsg, resendMsg } = require('./slackApi')
 
 
 function commandListen (app) {
@@ -15,6 +15,11 @@ function modalSubmitListen (app) {
 		await ack()
 		await sendMsg(client, body, view).catch(err => log.err(err))
 	})
+
+	app.view('ticketReModal', async ({ ack, body, view, client, logger }) => {
+		await ack()
+		await resendMsg(client, body, view).catch(err => log.err(err))
+	})
 }
 
 function teamEventListen (app) {
@@ -24,13 +29,12 @@ function teamEventListen (app) {
 }
 
 function actionListen (app) {
-	app.action('buttonRedirect', async ({ ack, say, action, body}) => {
+	app.action('buttonRedirect', async ({ ack, say, action, body, client}) => {
 		await ack()
 		const user = body.user
 		const thread = body.message
 
-
-		console.log(user, thread)
+		modalSchema.ticketResend(client, body).then(modal => { log.info(modal) })
 	})
 }
 

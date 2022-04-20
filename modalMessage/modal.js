@@ -8,6 +8,12 @@ const modalSchema = {
 			view: sample.ticket
 		})
 	},
+	ticketResend: async (client, body) => {
+		await client.views.open({
+			trigger_id: body.trigger_id,
+			view: sample.resendTicket
+		})
+	}
 }
 
 

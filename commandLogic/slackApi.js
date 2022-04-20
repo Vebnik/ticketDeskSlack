@@ -59,21 +59,25 @@ async function editStatusMsg (client, event) {
 	}
 }
 
-async function resendMsg (client) {
+async function resendMsg (client, body, view, prevThread) {
+
+	const userName = `${body.user.name}`
+	const userInputs = Object.values(view.state.values).map(el => Object.values(el)).map(el => Object.entries(...el)[1]).map(el => el[1])
+	console.log(threadMem)
 
 	await client.chat.postMessage({
 		channel: userInputs[0],
 		attachments: ticketMsg(userName, 'waiting support ⏲'),
 	})
-		.then(async info => {
-			threadMem.set(info.ts, [info.channel, userName, userInputs])
-			await client.chat.postMessage({
-				channel: info.channel,
-				thread_ts: info.ts,
-				blocks: ticketReply(userInputs)
-			})
-		})
+		// .then(async info => {
+		// 	threadMem.set(info.ts, [info.channel, userName, userInputs])
+		// 	await client.chat.postMessage({
+		// 		channel: info.channel,
+		// 		thread_ts: info.ts,
+		// 		blocks: ticketReply(userInputs)
+		// 	})
+		// })
 }
 
 
-module.exports = { sendMsg, editStatusMsg }
+module.exports = { sendMsg, editStatusMsg, resendMsg }

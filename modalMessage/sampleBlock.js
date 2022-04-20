@@ -130,6 +130,62 @@ module.exports = {
 			"emoji": true
 		},
 	},
+	resendTicket: {
+		type: 'modal',
+		callback_id: 'ticketReModal',
+		title: {
+			"type": "plain_text",
+			"text": "Ticket Resend",
+			"emoji": true
+		},
+		blocks: [
+			{
+				"type": "section",
+				"text": {
+					"type": "mrkdwn",
+					"text": "Redirect ticket"
+				}
+			},
+			{
+				"type": "divider"
+			},
+			{
+				"type": "context",
+				"elements": [
+					{
+						"type": "plain_text",
+						"text": "Pick right channel",
+						"emoji": true
+					}
+				]
+			},
+			{
+				"type": "actions",
+				"elements": [
+					{
+						"type": "channels_select",
+						"placeholder": {
+							"type": "plain_text",
+							"text": "Select a channel",
+							"emoji": true
+						},
+						"initial_channel": "C12345678",
+						"action_id": "actionId-2"
+					}
+				]
+			},
+		],
+		close: {
+			"type": "plain_text",
+			"text": "Cancel",
+			"emoji": true
+		},
+		submit: {
+			"type": "plain_text",
+			"text": "Submit",
+			"emoji": true
+		},
+	},
 	testAttachment: (userName) => [
 		{
 			"type": "section",
