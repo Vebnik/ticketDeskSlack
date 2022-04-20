@@ -1,5 +1,5 @@
 module.exports = {
-	ticket: {
+	ticket: () => [{
 		type: 'modal',
 		callback_id: 'ticketModal',
 		title: {
@@ -129,8 +129,8 @@ module.exports = {
 			"text": "Submit",
 			"emoji": true
 		},
-	},
-	resendTicket: {
+	}],
+	resendTicket: (threadTs) => [{
 		type: 'modal',
 		callback_id: 'ticketReModal',
 		title: {
@@ -155,6 +155,11 @@ module.exports = {
 					{
 						"type": "plain_text",
 						"text": "Pick right channel",
+						"emoji": true
+					},
+					{
+						"type": "plain_text",
+						"text": `Current thread - ${threadTs}`,
 						"emoji": true
 					}
 				]
@@ -185,7 +190,7 @@ module.exports = {
 			"text": "Submit",
 			"emoji": true
 		},
-	},
+	}],
 	testAttachment: (userName) => [
 		{
 			"type": "section",
