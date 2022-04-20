@@ -130,7 +130,7 @@ module.exports = {
 			"emoji": true
 		},
 	},
-	ticketMsg: (userName, userInput) => [
+	testAttachment: (userName) => [
 		{
 			"type": "section",
 			"text": {
@@ -138,6 +138,8 @@ module.exports = {
 				"text": `Обращения для QA 💻 -> @${userName}`
 			}
 		},
+	],
+	ticketReply: (userInput) => [
 		{
 			"type": "divider"
 		},
@@ -161,7 +163,7 @@ module.exports = {
 			"type": "section",
 			"text": {
 				"type": "plain_text",
-				"text": `:four: Фактическое поведение\n${userInput[5]}`,
+				"text": `:three: Фактическое поведение\n${userInput[5]}`,
 				"emoji": true
 			}
 		},
@@ -169,7 +171,7 @@ module.exports = {
 			"type": "section",
 			"text": {
 				"type": "plain_text",
-				"text": `:five: Ожидаемое поведение\n${userInput[6]}`,
+				"text": `:four: Ожидаемое поведение\n${userInput[6]}`,
 				"emoji": true
 			}
 		},
@@ -177,9 +179,37 @@ module.exports = {
 			"type": "section",
 			"text": {
 				"type": "plain_text",
-				"text": `:six: Дополнительная информация\nID1: ${userInput[1]} || ID2 ${userInput[2]}`,
+				"text": `:five: Дополнительная информация\nID1: ${userInput[1]} || ID2 ${userInput[2]}`,
 				"emoji": true
 			}
+		},
+		{
+			"type": "divider"
+		},
+	],
+	ticketMsg: (userName, status) => [
+		{
+			"color": "#4184ea",
+			"blocks": [
+				{
+					"type": "section",
+					"text": {
+						"type": "mrkdwn",
+						"text": `Обращения для QA 💻 -> @${userName}`
+					}
+				},
+				{
+					"type": "divider"
+				},
+				{
+					"type": "section",
+					"text": {
+						"type": "plain_text",
+						"text": `Status => ${status}`,
+						"emoji": true
+					}
+				}
+			]
 		}
 	],
 }

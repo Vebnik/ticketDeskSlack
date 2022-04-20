@@ -1,6 +1,6 @@
 const { modalSchema } = require('../modalMessage/modal')
 const { log } = require('../sys/consoleLog')
-const { sendMsg } = require('./slackApi')
+const { sendMsg, editStatusMsg } = require('./slackApi')
 
 
 function commandListen (app) {
@@ -17,5 +17,10 @@ function modalSubmitListen (app) {
 	})
 }
 
+function teamEventListen (app) {
+	app.event('reaction_added', async ({ event, client, logger }) => {
+		await editStatusMsg(client, event)
+	})
+}
 
-module.exports = { commandListen, modalSubmitListen }
+module.exports = { commandListen, modalSubmitListen, teamEventListen }

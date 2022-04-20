@@ -6,6 +6,7 @@ const app = new App({
 	signingSecret: process.env.SIGNING,
 	port: process.env.PORT,
 	socketMode: true,
+	scopes: ['reactions:read']
 })
 const start = new AppStart(app)
 

@@ -1,5 +1,5 @@
 const { log } = require('../../sys/consoleLog')
-const { commandListen, modalSubmitListen } = require('../../commandLogic/commandHendler')
+const { commandListen, modalSubmitListen, teamEventListen } = require('../../commandLogic/commandHendler')
 
 
 function AppStart (app) {
@@ -13,6 +13,7 @@ function AppStart (app) {
 	this.eventHandler = () => {
 		commandListen(app)
 		modalSubmitListen(app)
+		teamEventListen(app)
 	}
 }
 
