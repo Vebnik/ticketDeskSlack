@@ -23,4 +23,15 @@ function teamEventListen (app) {
 	})
 }
 
-module.exports = { commandListen, modalSubmitListen, teamEventListen }
+function actionListen (app) {
+	app.action('buttonRedirect', async ({ ack, say, action, body}) => {
+		await ack()
+		const user = body.user
+		const thread = body.message
+
+
+		console.log(user, thread)
+	})
+}
+
+module.exports = { commandListen, modalSubmitListen, teamEventListen, actionListen }

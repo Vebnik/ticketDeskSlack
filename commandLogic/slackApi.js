@@ -1,4 +1,4 @@
-const { ticketMsg, ticketReply, testAttachment } = require('../modalMessage/sampleBlock')
+const { ticketMsg, ticketReply, ticketReSend } = require('../modalMessage/sampleBlock')
 
 
 const threadMem = new Map()
@@ -13,7 +13,7 @@ async function sendMsg (client, body, view) {
 		attachments: ticketMsg(userName, 'waiting support ⏲'),
 	})
 		.then(async info => {
-			threadMem.set(info.ts, [info.channel, userName])
+			threadMem.set(info.ts, [info.channel, userName, userInputs])
 			await client.chat.postMessage({
 				channel: info.channel,
 				thread_ts: info.ts,
@@ -26,8 +26,11 @@ async function editStatusMsg (client, event) {
 
 	const emoji = event.reaction
 	const reactions = [event.item.channel, event.item.ts]
+	const userName = event.user
 
-	if (!threadMem.has(reactions[1])) return false
+	console.log(event)
+
+	if ( !threadMem.has(reactions[1]) ) return false
 	switch (emoji) {
 
 		case 'eyes':
@@ -45,7 +48,31 @@ async function editStatusMsg (client, event) {
 				attachments: ticketMsg(threadMem.get(reactions[1])[1], 'Close 🛑'),
 			})
 		break
+
+		case 'arrows_counterclockwise':
+			await client.chat.postMessage({
+				channel: reactions[0],
+				thread_ts: reactions[1],
+				attachments: ticketReSend(userName)
+			})
+		break
 	}
+}
+
+async function resendMsg (client) {
+
+	await client.chat.postMessage({
+		channel: userInputs[0],
+		attachments: ticketMsg(userName, 'waiting support ⏲'),
+	})
+		.then(async info => {
+			threadMem.set(info.ts, [info.channel, userName, userInputs])
+			await client.chat.postMessage({
+				channel: info.channel,
+				thread_ts: info.ts,
+				blocks: ticketReply(userInputs)
+			})
+		})
 }
 
 

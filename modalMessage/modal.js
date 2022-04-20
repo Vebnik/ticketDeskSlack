@@ -8,9 +8,6 @@ const modalSchema = {
 			view: sample.ticket
 		})
 	},
-	test: async () => {
-		const modal = {}
-	}
 }
 
 

@@ -209,4 +209,29 @@ module.exports = {
 			]
 		}
 	],
+	ticketReSend: (userName) => [
+		{
+			"color": "#255eb4",
+			"blocks": [
+				{
+					"type": "section",
+					"text": {
+						"type": "mrkdwn",
+						"text": `<@${userName}>  ➡  Resend this ticket in other channel `
+					},
+					"accessory": {
+						"type": "button",
+						"text": {
+							"type": "plain_text",
+							"text": "Redirect",
+							"emoji": true
+						},
+						"style": "primary",
+						"value": "redirect",
+						"action_id": "buttonRedirect"
+					}
+				}
+			]
+		}
+	],
 }
