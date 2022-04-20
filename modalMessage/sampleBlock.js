@@ -199,9 +199,6 @@ module.exports = {
 					}
 				},
 				{
-					"type": "divider"
-				},
-				{
 					"type": "section",
 					"text": {
 						"type": "plain_text",

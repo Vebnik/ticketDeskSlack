@@ -34,10 +34,17 @@ async function editStatusMsg (client, event) {
 			await client.chat.update({
 				channel: reactions[0],
 				ts: reactions[1],
-				attachments: ticketMsg(threadMem.get((reactions[1][1])), 'In progress 🟡'),
+				attachments: ticketMsg(threadMem.get(reactions[1])[1], 'In progress 🟡'),
 			})
-		return true
+		break
 
+		case 'heavy_check_mark':
+			await client.chat.update({
+				channel: reactions[0],
+				ts: reactions[1],
+				attachments: ticketMsg(threadMem.get(reactions[1])[1], 'Close 🟢'),
+			})
+		break
 	}
 }
 
