@@ -159,7 +159,7 @@ module.exports = {
 					},
 					{
 						"type": "plain_text",
-						"text": `Current thread - ${threadTs}`,
+						"text": `${threadTs}`,
 						"emoji": true
 					}
 				]

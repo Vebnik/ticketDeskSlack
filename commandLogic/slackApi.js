@@ -2,13 +2,12 @@ const { ticketMsg, ticketReply, ticketReSend } = require('../modalMessage/sample
 
 
 const threadMem = new Map()
-const prevData = new Map()
 
 async function sendMsg (client, body, view) {
 
 	const userName = `${body.user.name}`
 	const userInputs = Object.values(view.state.values).map(el => Object.values(el)).map(el => Object.entries(...el)[1]).map(el => el[1])
-	prevData.set(userInputs[3], userInputs)
+
 
 	await client.chat.postMessage({
 		channel: userInputs[0],
@@ -63,19 +62,18 @@ async function resendMsg (client, body, view) {
 
 	const userName = `${body.user.name}`
 	const userInputs = Object.values(view.state.values).map(el => Object.values(el)).map(el => Object.entries(...el)[1]).map(el => el[1])
-
-	console.log(view)
+	const prevThread = view.blocks[2].elements[1].text
 
 	await client.chat.postMessage({
 		channel: userInputs[0],
 		attachments: ticketMsg(userName, 'waiting support ⏲'),
 	})
 		.then(async info => {
-			threadMem.set(info.ts, [info.channel, userName, threadMem.get(1)])
+			threadMem.set(info.ts, [info.channel, userName, threadMem.get(prevThread)[2]])
 			await client.chat.postMessage({
 				channel: info.channel,
 				thread_ts: info.ts,
-				blocks: ticketReply(prevData)
+				blocks: ticketReply(threadMem.get(prevThread)[2])
 			})
 		})
 }

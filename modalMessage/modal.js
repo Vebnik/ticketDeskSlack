@@ -9,10 +9,14 @@ const modalSchema = {
 		})
 	},
 	ticketResend: async (client, body) => {
-		await client.views.open({
-			trigger_id: body.trigger_id,
-			view: sample.resendTicket(body.message.ts)[0]
-		})
+		try {
+			await client.views.open({
+				trigger_id: body.trigger_id,
+				view: sample.resendTicket(body.message.thread_ts)[0]
+			})
+		} catch (e) {
+			console.error(e)
+		}
 	}
 }
 

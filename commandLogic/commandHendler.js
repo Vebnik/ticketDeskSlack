@@ -31,9 +31,6 @@ function teamEventListen (app) {
 function actionListen (app) {
 	app.action('buttonRedirect', async ({ ack, say, action, body, client}) => {
 		await ack()
-		const user = body.user
-		const threadTs = body.message.ts
-
 		modalSchema.ticketResend(client, body).then(modal => { log.info(modal) })
 	})
 }
